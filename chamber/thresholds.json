@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "note": "Pass marks for the test chamber: the minimum percentage of frames that must be delivered, per preset and profile. null means 'report only, never fail'. Marks were set from the design simulation in docs/briefs/01-acoustic-modem.md (section 9) with a safety margin. Only the project owner edits this file. Agents must never change it to make a run pass.",
+  "frames": { "quick": 40, "full": 150 },
+  "quick": [
+    "clean",
+    "noise-3db",
+    "quiet-room",
+    "living-room",
+    "clipped",
+    "tone-on-grid",
+    "speech-10db",
+    "no-signal-noise"
+  ],
+  "minimumPercent": {
+    "clean": { "NEAR-1": 100, "ROOM-1": 100 },
+    "noise-6db": { "NEAR-1": 99, "ROOM-1": 99 },
+    "noise-3db": { "NEAR-1": 95, "ROOM-1": 95 },
+    "quiet-room": { "NEAR-1": 97, "ROOM-1": 97 },
+    "living-room": { "NEAR-1": null, "ROOM-1": 88 },
+    "far-corner": { "NEAR-1": null, "ROOM-1": 75 },
+    "hall": { "NEAR-1": null, "ROOM-1": null },
+    "telephone-band": { "NEAR-1": 97, "ROOM-1": 97 },
+    "clipped": { "NEAR-1": 97, "ROOM-1": 97 },
+    "clock-fast": { "NEAR-1": 97, "ROOM-1": 97 },
+    "clock-slow": { "NEAR-1": 97, "ROOM-1": 97 },
+    "tone-on-grid": { "NEAR-1": 92, "ROOM-1": 92 },
+    "tone-off-grid": { "NEAR-1": null, "ROOM-1": null },
+    "speech-10db": { "NEAR-1": 95, "ROOM-1": 95 },
+    "speech-5db": { "NEAR-1": 85, "ROOM-1": 80 },
+    "street": { "NEAR-1": 85, "ROOM-1": 78 },
+    "rate-44100": { "NEAR-1": 95, "ROOM-1": 95 },
+    "rate-48000": { "NEAR-1": 95, "ROOM-1": 95 },
+    "codec-aac-128": { "NEAR-1": 97, "ROOM-1": 97 },
+    "codec-opus-96": { "NEAR-1": 97, "ROOM-1": 97 },
+    "codec-mp3-128": { "NEAR-1": 97, "ROOM-1": 97 },
+    "video-then-room": { "NEAR-1": null, "ROOM-1": 88 }
+  },
+  "maxFalseFrames": {
+    "no-signal-noise": 0,
+    "no-signal-speech": 0,
+    "no-signal-tones": 0
+  }
+}

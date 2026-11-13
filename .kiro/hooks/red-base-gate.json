@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "red-base-gate",
+      "description": "Before a spec task starts, run typecheck and tests; block the task (exit code 2) if they fail, so work is never stacked on a broken base. Shell command only: uses no credits, but adds a minute before each task. Ships disabled; turn on once M1 is green.",
+      "trigger": "PreTaskExec",
+      "action": {
+        "type": "command",
+        "command": "node scripts/hooks/red-base-gate.mjs"
+      },
+      "timeout": 300,
+      "enabled": false
+    }
+  ]
+}

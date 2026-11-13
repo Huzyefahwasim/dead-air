@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "build-journal",
+      "description": "After every spec task, append a timestamped line to docs/kiro-journal.md. The journal is the factual record the hackathon write-up is drafted from. Shell command only: uses no credits.",
+      "trigger": "PostTaskExec",
+      "action": {
+        "type": "command",
+        "command": "node scripts/hooks/journal.mjs"
+      },
+      "timeout": 10
+    }
+  ]
+}

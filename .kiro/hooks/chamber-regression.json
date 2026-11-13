@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "chamber-regression",
+      "description": "After a spec task, make the agent prove the modem still passes the test chamber. Agent prompt: uses credits, so it ships disabled. Turn it on (set enabled to true) once `npm run chamber:quick` exists (milestone M2).",
+      "trigger": "PostTaskExec",
+      "action": {
+        "type": "agent",
+        "prompt": "A spec task just finished. If, and only if, that task changed a file under packages/modem, packages/protocol or packages/chamber: run `npm run chamber:quick` now and report its one-line summary. If any preset is below its mark in chamber/thresholds.json, treat it as a regression caused by the task: find the cause and fix the code before you end your turn. You must not edit chamber/thresholds.json, chamber/presets.json or any test to make it pass. If the task touched none of those folders, do nothing and say nothing about the chamber."
+      },
+      "enabled": false
+    }
+  ]
+}

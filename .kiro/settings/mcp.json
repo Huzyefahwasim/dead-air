@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "deadair-chamber": {
+      "command": "node",
+      "args": ["packages/chamber-mcp/dist/index.js"],
+      "env": {},
+      "disabled": true,
+      "autoApprove": ["list_presets", "run_trial", "run_sweep", "compare_to_baseline", "explain_failures"]
+    }
+  }
+}

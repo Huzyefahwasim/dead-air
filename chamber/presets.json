@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "note": "Named acoustic conditions for the test chamber. Stage definitions are in docs/briefs/02-test-chamber.md. This file belongs to the user: tools read it and never rewrite it.",
+  "defaultSampleRate": 16000,
+  "presets": {
+    "clean": {
+      "description": "No impairment at all.",
+      "stages": {}
+    },
+    "noise-6db": {
+      "description": "White noise, in-band SNR 6 dB.",
+      "stages": { "noise": { "snrDb": 6 } }
+    },
+    "noise-3db": {
+      "description": "White noise, in-band SNR 3 dB. The reference point for sensitivity.",
+      "stages": { "noise": { "snrDb": 3 } }
+    },
+    "quiet-room": {
+      "description": "Phone held near the speaker in a quiet room.",
+      "stages": { "room": { "rt60": 0.3, "drrDb": 10 }, "noise": { "snrDb": 20 } }
+    },
+    "living-room": {
+      "description": "Across a furnished room with some background noise. The case ROOM-1 exists for.",
+      "stages": { "room": { "rt60": 0.5, "drrDb": 0 }, "noise": { "snrDb": 10 } }
+    },
+    "far-corner": {
+      "description": "Far side of the room: reverberant sound stronger than direct sound.",
+      "stages": { "room": { "rt60": 0.5, "drrDb": -5 }, "noise": { "snrDb": 20 } }
+    },
+    "hall": {
+      "description": "Echoey hall. Known limit of the design; reported for information.",
+      "stages": { "room": { "rt60": 0.8, "drrDb": -5 }, "noise": { "snrDb": 20 } }
+    },
+    "telephone-band": {
+      "description": "Narrow channel such as a phone call or a small AM radio.",
+      "stages": { "band": { "lowHz": 300, "highHz": 3400 }, "noise": { "snrDb": 15 } }
+    },
+    "clipped": {
+      "description": "Overdriven speaker or megaphone: 10x gain into hard clipping, with noise.",
+      "stages": { "noise": { "snrDb": 10 }, "clip": { "gain": 10 } }
+    },
+    "clock-fast": {
+      "description": "Receiver clock 1000 ppm fast.",
+      "stages": { "noise": { "snrDb": 20 }, "clock": { "ppm": 1000 } }
+    },
+    "clock-slow": {
+      "description": "Receiver clock 1000 ppm slow.",
+      "stages": { "noise": { "snrDb": 20 }, "clock": { "ppm": -1000 } }
+    },
+    "tone-on-grid": {
+      "description": "Steady whistle exactly on a tone frequency, 3x the amplitude of one tone.",
+      "stages": { "tone": { "hz": 2000, "relAmplitude": 3 }, "noise": { "snrDb": 20 } }
+    },
+    "tone-off-grid": {
+      "description": "Strong steady whistle between two tone frequencies. Known weak spot; reported for information.",
+      "stages": { "tone": { "hz": 2012, "relAmplitude": 10 }, "noise": { "snrDb": 20 } }
+    },
+    "speech-10db": {
+      "description": "Someone talking nearby, signal 10 dB above the speech.",
+      "stages": { "speech": { "sirDb": 10 }, "noise": { "snrDb": 25 } }
+    },
+    "speech-5db": {
+      "description": "Loud talking nearby, signal 5 dB above the speech.",
+      "stages": { "speech": { "sirDb": 5 }, "noise": { "snrDb": 25 } }
+    },
+    "street": {
+      "description": "Noisy outdoor setting: talking plus broadband noise.",
+      "stages": { "speech": { "sirDb": 5 }, "noise": { "snrDb": 5 } }
+    },
+    "rate-44100": {
+      "description": "Noise at 3 dB, run at 44.1 kHz.",
+      "sampleRate": 44100,
+      "stages": { "noise": { "snrDb": 3 } }
+    },
+    "rate-48000": {
+      "description": "Noise at 3 dB, run at 48 kHz.",
+      "sampleRate": 48000,
+      "stages": { "noise": { "snrDb": 3 } }
+    },
+    "codec-aac-128": {
+      "description": "AAC at 128 kbit/s (needs ffmpeg).",
+      "sampleRate": 48000,
+      "stages": { "codec": { "name": "aac", "kbps": 128 } }
+    },
+    "codec-opus-96": {
+      "description": "Opus at 96 kbit/s (needs ffmpeg).",
+      "sampleRate": 48000,
+      "stages": { "codec": { "name": "opus", "kbps": 96 } }
+    },
+    "codec-mp3-128": {
+      "description": "MP3 at 128 kbit/s (needs ffmpeg).",
+      "sampleRate": 48000,
+      "stages": { "codec": { "name": "mp3", "kbps": 128 } }
+    },
+    "video-then-room": {
+      "description": "Models the demo video path: compressed audio played on a laptop, phone across the desk (needs ffmpeg).",
+      "sampleRate": 48000,
+      "stages": {
+        "codec": { "name": "aac", "kbps": 128 },
+        "room": { "rt60": 0.5, "drrDb": 0 },
+        "noise": { "snrDb": 10 }
+      }
+    },
+    "no-signal-noise": {
+      "description": "60 s of white noise at RMS 0.1 with no frame in it. Nothing may be decoded.",
+      "kind": "no-signal",
+      "source": "noise",
+      "seconds": 60
+    },
+    "no-signal-speech": {
+      "description": "60 s of the synthetic speech-like interference at RMS 0.1 with no frame in it.",
+      "kind": "no-signal",
+      "source": "speech",
+      "seconds": 60
+    },
+    "no-signal-tones": {
+      "description": "60 s of six sinusoids (1047, 1319, 1568, 2093, 2637, 3136 Hz), each switched on and off at its own rate between 0.7 and 2 Hz, amplitude 0.05 each, plus white noise at RMS 0.005.",
+      "kind": "no-signal",
+      "source": "tones",
+      "seconds": 60
+    }
+  }
+}

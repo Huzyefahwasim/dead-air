@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "format-on-save",
+      "description": "After the agent saves a source file, format it with Prettier (if installed). Skips .kiro, node_modules and dist. Shell command only: uses no credits.",
+      "trigger": "PostFileSave",
+      "matcher": "\\.(ts|tsx|mts|js|mjs|cjs|json|css)$",
+      "action": {
+        "type": "command",
+        "command": "node scripts/hooks/format.mjs \"{{filePath}}\""
+      },
+      "timeout": 20
+    }
+  ]
+}

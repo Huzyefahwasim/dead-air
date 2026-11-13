@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "session-status",
+      "description": "At session start, print the next milestone from docs/status.md and warn if .kiro is git-ignored or LICENSE is missing. Shell command only: uses no credits.",
+      "trigger": "SessionStart",
+      "action": {
+        "type": "command",
+        "command": "node scripts/hooks/session-status.mjs"
+      },
+      "timeout": 10
+    }
+  ]
+}
